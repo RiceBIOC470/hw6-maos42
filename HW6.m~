@@ -309,46 +309,13 @@ plot(x,y,'r.','MarkerSize',22);
 r2=[SSs.rsquare];
 r2adj=[SSs.adjrsquare];
 
-[fit1,SSs]=fit(x',y','poly2'); %#ok<ASGLU>
-r2(2,1)=[SSs.rsquare];
-r2adj(2,1)=[SSs.adjrsquare];
+[coeff]=polyfit(x,y*r2,1);
+plot(x,y*r2,'r.','MarkerSize',22); 
+hold on; plot(x,polyval(coeff,x),'k.-','LineWidth',3); 
+[coeff]=polyfit(x,y*r2adj,1);
+hold on; plot(x,polyval(coeff,x),'b.-','LineWidth',3); 
+text([5 5],[300 400],{'r^2 black','r^2 adjusted blue'});
 
-[fit1,SSs]=fit(x',y','poly3'); %#ok<ASGLU>
-r2(3,1)=[SSs.rsquare];
-r2adj(3,1)=[SSs.adjrsquare];
-
-[fit1,SSs]=fit(x',y','poly4'); %#ok<ASGLU>
-r2(4,1)=[SSs.rsquare];
-r2adj(4,1)=[SSs.adjrsquare];
-
-[fit1,SSs]=fit(x',y','poly5'); %#ok<ASGLU>
-r2(5,1)=[SSs.rsquare];
-r2adj(5,1)=[SSs.adjrsquare];
-
-[fit1,SSs]=fit(x',y','poly6'); %#ok<ASGLU>
-r2(6,1)=[SSs.rsquare];
-r2adj(6,1)=[SSs.adjrsquare];
-
-[fit1,SSs]=fit(x',y','poly7'); %#ok<ASGLU>
-r2(7,1)=[SSs.rsquare];
-r2adj(7,1)=[SSs.adjrsquare];
-
-[fit1,SSs]=fit(x',y','poly8'); %#ok<ASGLU>
-r2(8,1)=[SSs.rsquare];
-r2adj(8,1)=[SSs.adjrsquare];
-
-[fit1,SSs]=fit(x',y','poly9'); %#ok<ASGLU>
-r2(9,1)=[SSs.rsquare];
-r2adj(9,1)=[SSs.adjrsquare];
-
-plot(1:9,r2,'r.-'); hold on; plot(1:9,r2adj,'b.-');
-text([6 6],[0.8 0.9],{'r^2 red','r^2 adjusted blue'});
-
-%On the plots for the r^2 and r^2 adjusted, we can observe that we have
-%very low values, that can be explained by the fact that not only I'm
-%creating noise, but the range for x is huge, which means that each point
-%will be so distant with each other that everything is like random data,
-%and not any polynomial can fit it. 
 
 % Problem 2. Basic statistics. 
 % Part 1. Consider two different distributions - Gaussian numbers with a mean of
